@@ -64,5 +64,8 @@ public class CourseModel implements Serializable {
     @Fetch(FetchMode.SUBSELECT) // dessa forma e feita 2 consultas, 1 para cursos e 1 para buscar todos os modulos
     private Set<ModuleModel> modules; // Um curso tem varios modulos. set<> -> o set nao e ordenado nao permite duplicados
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "course",  fetch = FetchType.LAZY)
+    private Set<CourseUserModel> courseUsers;
 
 }
